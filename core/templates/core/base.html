@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Lovers | Veterinaria</title>
+    
+    <!-- Bootstrap y CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+</head>
+
+<body class="bg-light">
+
+    <!-- ÚNICO HEADER: Bloque Teal con Overlap -->
+    <header class="bg-teal py-4" style="min-height: 280px; background-color: #008080;">
+        <div class="container-xl">
+            
+            <!-- Fila superior: Logo y Login (User Info) -->
+            <div class="d-flex justify-content-between align-items-center w-100 mb-4">
+                <!-- Lado Izquierdo: Logo -->
+                <div class="d-flex align-items-center text-white">
+                    <img width="40" height="40" src="https://img.icons8.com/sf-regular-filled/48/ffffff/dog-footprint.png" alt="logo" class="me-2"/>
+                    <h1 class="fs-4 fw-bold mb-0">PetLovers</h1>
+                </div>
+
+                <!-- Lado Derecho: Usuario -->
+                <div class="d-flex align-items-center text-white">
+                    <div class="text-end me-3">
+                        <small class="d-block opacity-75 text-uppercase">Bienvenido</small>
+                        <strong class="d-block">{{ user.username|default:"Invitado" }}</strong>
+                    </div>
+                    <img src="https://img.icons8.com/ios-glyphs/40/ffffff/user-male-circle.png" alt="user" class="rounded-circle">
+                </div>                    
+            </div>
+
+            <!-- Navbar Expand Large Horizontal (Dentro del bloque Teal) -->
+            <div class="d-flex justify-content-center mt-4">
+                <nav class="pill-nav d-flex align-items-center d-none d-lg-flex">
+                        <a href= "{% url 'core:home'%}" class="pill-link active">Inicio</a>
+                        <a href="#" class="pill-link">🏪 Tienda</a>
+                        <a href="#" class="pill-link">💬 Contacto</a>
+                        <a href="#" class="pill-link">📈 Panel</a>
+                        <a href="#" class="pill-link">🐾 Mis mascotas</a>
+                        <a href="#" class="pill-link">💉 Vacunas</a>
+                        <a href="#" class="pill-link">📅 Mis citas</a>
+                        <a href="{% url 'admin:logout' %}" class="pill-btn"> Salir</a>
+            </nav>
+
+        </div> <!-- Cierre container -->
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

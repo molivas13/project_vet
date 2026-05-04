@@ -1,0 +1,67 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container-xl" style="margin-top: -80px;">
+    
+    <div class="row row-cards g-4">
+        
+        <!-- Placeholder Card 1: Resumen -->
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 p-4 rounded-4">
+                <div class="card-body">
+                    <h3 class="fw-bold mb-3">Hola, {{ user.username }}</h3>
+                    <p class="text-muted">Aquí tienes un resumen de tus actividades hoy.</p>
+                    
+                    <!-- Ejemplo de Placeholder (Animación de carga) -->
+                    <div class="placeholder-glow">
+                        <span class="placeholder col-7"></span>
+                        <span class="placeholder col-4"></span>
+                        <span class="placeholder col-4"></span>
+                        <span class="placeholder col-6"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Placeholder Card 2: Estado -->
+        <div class="col-md-4">
+            <div class="card shadow-lg border-0 p-4 rounded-4">
+                <div class="card-body">
+                    <h5 class="text-uppercase small fw-bold text-teal mb-3">Próxima Cita</h5>
+                    
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="placeholder-glow w-100">
+                            <div class="placeholder col-12 mb-2" style="height: 40px; border-radius: 10px;"></div>
+                            <span class="placeholder col-8"></span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-teal w-100 rounded-pill text-white" style="background-color: #008080;">
+                        Agendar Nueva
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fila de tarjetas inferiores -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 p-3">
+                <div class="placeholder-glow">
+                    <div class="placeholder col-12 mb-2" style="height: 150px;"></div>
+                    <span class="placeholder col-6"></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 p-3">
+                <div class="placeholder-glow">
+                    <div class="placeholder col-12 mb-2" style="height: 150px;"></div>
+                    <span class="placeholder col-6"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
