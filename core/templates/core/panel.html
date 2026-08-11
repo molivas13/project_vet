@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-xl py-4">
+    <div class="col-12 mb-4">
+        <div class="card card-hero-welcome p-4 p-md-5">
+            <div class="row align-items-center">
+
+                <!-- Texto de Bienvenida -->
+                <div class="col-lg-7 col-12">
+                    <span class="badge bg-teal-light text-teal fw-bold px-3 py-2 rounded-pill mb-3">Panel de control</span>
+                    <h2 class="fw-bold text-dark display-6 mb-2">¡Hola, {{ user.username|default:"Amigo" }}!</h2>
+                    <p class="text-muted mb-4 fs-6">
+                        Bienvenido al portal de tu veterinaria. Aquí puedes programar turnos, consultar tus informes clínicos y gestionar toda la información de tus mascotas.
+                    </p>
+
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#" class="btn btn-hero-action btn-hero-teal">
+                            <i class="fa-solid fa-calendar-plus me-2"></i> Registrar Cita
+                        </a>
+
+                        <a href="#" class="btn btn-hero-action btn-hero-outline">
+                            <i class="fa-solid fa-syringe me-2"></i> Calendario de vacunas
+                        </a>
+
+                        <a href="#" class="btn btn-hero-action btn-hero-outline">
+                            <i class="fa-solid fa-paw me-2"></i> Registrar Mascota
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Imagen / Ilustración a la derecha -->
+                <div class="col-lg-5 d-none d-lg-block text-center">
+                    <div class="fs-1 py-4">🐶🐱🦜</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

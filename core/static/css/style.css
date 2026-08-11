@@ -1,0 +1,160 @@
+/*Linea superior navbar*/
+/* contenedor superior */
+
+/* Navbar style */
+.navbar-glass-wrapper {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 50px !important;
+  width: 100%;
+}
+/* subtexto debajo del logo */
+.decoration-subtext {
+  font-size: 0.7rem !important;
+}
+
+.brand-icon-bg {
+  font-size: 1.4rem;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  padding: 6px;
+  border-radius: 12%;
+}
+
+/*enlaces del menu horizontales*/
+.custom-pill-link {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 50px !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+/* bton estados activo y hover */
+
+.custom-pill-link:hover,
+.custom-pill-link.active {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+}
+
+/*boton de salir*/
+.btn-nav-exit {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-nav-exit:hover {
+  background-color: rgba(244, 63, 94, 0.2);
+  color: #fda4af;
+}
+
+/*ajuste responsive para mobile*/
+@media (max-width: 1199.98px) {
+  .navbar-glass-wrapper {
+    border-radius: 20px !important;
+  }
+
+  .navbar-collapse {
+    margin-top: 15px;
+  }
+
+  .custom-pill-link {
+    width: 100%;
+    display: block;
+    padding: 0.6rem 1.2rem !important;
+  }
+
+  .border-top-mobile {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    flex-direction: column;
+    align-items: flex-start !important;
+    width: 100%;
+  }
+
+  .w-100-mobile {
+    width: 100% !important;
+    display: block;
+  }
+}
+
+.card-hero-welcome {
+  background-color: #ffffff !important;
+  border: none !important;
+  border-radius: 28px !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-hero-welcome::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(
+    circle,
+    rgba(0, 128, 128, 0.03) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.img-hero-vector {
+  max-height: 220px;
+  transition: transform 0.3s ease;
+}
+
+.card-hero-welcome:hover .img-hero-vector {
+  transform: scale(1.04) rotate(1deg);
+}
+
+.btn-hero-action {
+  padding: 0.7rem 1.4rem !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  border-radius: 50px !important;
+  transition: all 0.25s ease !important;
+  display: inline-flex;
+  align-items: center;
+}
+/*boton de registrar cita*/
+.btn-hero-teal {
+  background-color: #008080 !important;
+  color: #ffffff !important;
+  border: 1px solid #008080 !important;
+  box-shadow: 0 4px 12px rgba(0, 128, 128, 0.2) !important;
+}
+
+.btn-hero-teal:hover {
+  background-color: #005a5a !important;
+  border-color: #005a5a !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 128, 128, 0.3) !important;
+}
+
+/* boton para vacunas y mascotas*/
+
+.btn-hero-outline {
+  background-color: transparent !important;
+  color: #4b5563 !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+.btn-hero-outline:hover {
+  background-color: #f9fafb !important;
+  border-color: #008080 !important;
+  color: #008080 !important;
+  transform: translateY(-2px);
+}

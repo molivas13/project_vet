@@ -4,57 +4,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Lovers | Veterinaria</title>
-    
-    <!-- Bootstrap y CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+    <title>{% block title %}PetLovers - Cuidado de mascotas{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+<body>
 
-<body class="bg-light">
-
-    <!-- ÚNICO HEADER: Bloque Teal con Overlap -->
-    <header class="bg-teal py-4" style="min-height: 280px; background-color: #008080;">
-        <div class="container-xl">
-            
-            <!-- Fila superior: Logo y Login (User Info) -->
-            <div class="d-flex justify-content-between align-items-center w-100 mb-4">
-                <!-- Lado Izquierdo: Logo -->
-                <div class="d-flex align-items-center text-white">
-                    <img width="40" height="40" src="https://img.icons8.com/sf-regular-filled/48/ffffff/dog-footprint.png" alt="logo" class="me-2"/>
-                    <h1 class="fs-4 fw-bold mb-0">PetLovers</h1>
-                </div>
-
-                <!-- Lado Derecho: Usuario -->
-                <div class="d-flex align-items-center text-white">
-                    <div class="text-end me-3">
-                        <small class="d-block opacity-75 text-uppercase">Bienvenido</small>
-                        <strong class="d-block">{{ user.username|default:"Invitado" }}</strong>
-                    </div>
-                    <img src="https://img.icons8.com/ios-glyphs/40/ffffff/user-male-circle.png" alt="user" class="rounded-circle">
-                </div>                    
+<header class="navbar">
+    <div class="navbar-inner" id="navbarInner">
+        <a href="{% url 'core:home' %}" class="brand">
+            <div class="brand-logo">🐾</div>
+            <div class="brand-text">
+                <div class="brand-title">PetLovers</div>
+                <div class="brand-subtitle">Cuidado de mascotas</div>
             </div>
+        </a>
 
-            <!-- Navbar Expand Large Horizontal (Dentro del bloque Teal) -->
-            <div class="d-flex justify-content-center mt-4">
-                <nav class="pill-nav d-flex align-items-center d-none d-lg-flex">
-                        <a href= "{% url 'core:home'%}" class="pill-link active">Inicio</a>
-                        <a href="#" class="pill-link">🏪 Tienda</a>
-                        <a href="#" class="pill-link">💬 Contacto</a>
-                        <a href="#" class="pill-link">📈 Panel</a>
-                        <a href="#" class="pill-link">🐾 Mis mascotas</a>
-                        <a href="#" class="pill-link">💉 Vacunas</a>
-                        <a href="#" class="pill-link">📅 Mis citas</a>
-                        <a href="{% url 'admin:logout' %}" class="pill-btn"> Salir</a>
-            </nav>
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">☰</button>
 
-        </div> <!-- Cierre container -->
-    </header>
+        <nav class="nav-links">
+            <a href="{% url 'core:home' %}">🏠 Inicio</a>
+            <a href="{% url 'core:tienda' %}">🛍️ Tienda</a>
+            <a href="{% url 'core:contacto' %}">💬 Contacto</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'core:panel' %}">📋 Panel</a>
+                <a href="{% url 'core:mascotas' %}">🐕 Mis mascotas</a>
+                <a href="{% url 'core:vacunas' %}">💉 Vacunas</a>
+                <a href="{% url 'core:citas' %}">📅 Mis citas</a>
+            {% endif %}
+        </nav>
 
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+        <div class="nav-right">
+            {% if user.is_authenticated %}
+                <span>{{ user.username }}</span>
+                <a href="{% url 'core:panel' %}" class="icon-btn" title="Mi panel">👤</a>
+                <form action="{% url 'core:logout' %}" method="post" style="margin:0;">
+                    {% csrf_token %}
+                    <button type="submit" class="icon-btn" title="Cerrar sesión">↩</button>
+                </form>
+            {% else %}
+                <span>Invitado</span>
+                <a href="{% url 'core:login' %}" class="icon-btn" title="Iniciar sesión">👤</a>
+                <a href="{% url 'core:registro' %}" class="icon-btn" title="Crear cuenta">↪</a>
+            {% endif %}
+        </div>
+    </div>
+</header>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand">🐾 PetLovers</div>
+                <p>Cuidando mascotas con pasión y profesionalismo desde 2020.</p>
+                <div class="social-icons">
+                    <a href="#">f</a>
+                    <a href="#">t</a>
+                    <a href="#">ig</a>
+                    <a href="#">in</a>
+                </div>
+            </div>
+            <div>
+                <h4>Servicios</h4>
+                <ul>
+                    <li><a href="{% url 'core:tienda' %}">Tienda</a></li>
+                    <li>Consultas</li>
+                    <li><a href="{% url 'core:vacunas' %}">Vacunas</a></li>
+                    <li><a href="{% url 'core:citas' %}">Citas</a></li>
+                    <li>Comunidad</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Empresa</h4>
+                <ul>
+                    <li>Sobre nosotros</li>
+                    <li>Blog</li>
+                    <li><a href="{% url 'core:contacto' %}">Contacto</a></li>
+                    <li>Carreras</li>
+                    <li>Prensa</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Legal</h4>
+                <ul>
+                    <li>Privacidad</li>
+                    <li>Términos</li>
+                    <li>Cookies</li>
+                    <li>Accesibilidad</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© {% now "Y" %} PetLovers. Todos los derechos reservados.</span>
+            <span>Hecho con ❤️ para tus mascotas</span>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const toggle = document.getElementById('navToggle');
+    const inner = document.getElementById('navbarInner');
+    if (toggle) {
+        toggle.addEventListener('click', () => inner.classList.toggle('open'));
+    }
+</script>
+{% block extra_js %}{% endblock %}
 </body>
 </html>

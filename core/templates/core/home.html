@@ -1,67 +1,108 @@
-{% extends 'core/base.html' %}
+{% extends "core/base.html" %}
+
+{% block title %}Home{% endblock %}
 
 {% block content %}
-<div class="container-xl" style="margin-top: -80px;">
     
-    <div class="row row-cards g-4">
-        
-        <!-- Placeholder Card 1: Resumen -->
-        <div class="col-md-8">
-            <div class="card shadow-lg border-0 p-4 rounded-4">
-                <div class="card-body">
-                    <h3 class="fw-bold mb-3">Hola, {{ user.username }}</h3>
-                    <p class="text-muted">Aquí tienes un resumen de tus actividades hoy.</p>
-                    
-                    <!-- Ejemplo de Placeholder (Animación de carga) -->
-                    <div class="placeholder-glow">
-                        <span class="placeholder col-7"></span>
-                        <span class="placeholder col-4"></span>
-                        <span class="placeholder col-4"></span>
-                        <span class="placeholder col-6"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Placeholder Card 2: Estado -->
-        <div class="col-md-4">
-            <div class="card shadow-lg border-0 p-4 rounded-4">
-                <div class="card-body">
-                    <h5 class="text-uppercase small fw-bold text-teal mb-3">Próxima Cita</h5>
-                    
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="placeholder-glow w-100">
-                            <div class="placeholder col-12 mb-2" style="height: 40px; border-radius: 10px;"></div>
-                            <span class="placeholder col-8"></span>
-                        </div>
-                    </div>
-                    
-                    <button class="btn btn-teal w-100 rounded-pill text-white" style="background-color: #008080;">
-                        Agendar Nueva
-                    </button>
-                </div>
-            </div>
-        </div>
 
-        <!-- Fila de tarjetas inferiores -->
-        <div class="col-md-4">
-            <div class="card shadow-sm border-0 p-3">
-                <div class="placeholder-glow">
-                    <div class="placeholder col-12 mb-2" style="height: 150px;"></div>
-                    <span class="placeholder col-6"></span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-4">
-            <div class="card shadow-sm border-0 p-3">
-                <div class="placeholder-glow">
-                    <div class="placeholder col-12 mb-2" style="height: 150px;"></div>
-                    <span class="placeholder col-6"></span>
-                </div>
-            </div>
-        </div>
 
+<section class ="hero">
+    <div class="container hero-inner">
+        <h1>Bienvenido a <span>PetLovers</span></h1>
+        <p>Tu plataforma completa para el cuidado y bienestar de tus mascotas</p>
+        <div class="hero-actions">
+        <a href="{% url 'core:tienda' %}" class="btn btn-primary">Explorar Servicios</a>
+        <a href="{% url 'core:contacto' %}" class="btn btn-outline">Más información</a>
+        </div>
+        <div class="hero-stats">
+            <div><strong>1k+</strong><span>Mascotas Cuidadas</span></div>
+        </div>
+        <div><strong>98%</strong><span>Clientes satisfechos</span></div>
+    </div>
+        <div><strong>24/7</strong><span>Disponible</span></div>
+    </div>
+
+    <div class="hero-card">
+        <div class="emoji">🐕</div>
+        <div class="emoji">🐈</div>
+        <div class="emoji">🐦</div>
+        <p>Todas las mascotas merecen amor y cuidado.</p>
     </div>
 </div>
-{% endblock %}
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Nuestros Servicios</h2>
+            <p>Descubre todas las herramientas que temos para cuidar a tus mascotas </p>
+        </div>
+        <div class="grid-3">
+            <div class="service-card blue">
+                <div class="service-icon">🛍️​</div>
+                <h3>"Tienda de Mascotas"</h3>
+                <div class="desc">Productos de calidad para tus mascotas</div>
+                <ul>
+                    <li>Alimentos y golosinas</li>
+                    <li>Juguetes y accesorios</li>
+                    <li>Ropa y moda para mascotas</li>
+                </ul>
+                <div class="service-card green">
+                    <div class="service-icon">🩺</div>
+                    <h3>Consulta General</h3>
+                    <div class="desc">Atención veterinaria profesional</div>
+                    <ul> 
+                        <li>Exámenes de salud</li>
+                        <li>Vacunación y desparasitación</li>
+                        <li>Seguimiento</li>
+                    </ul>
+                </div>
+                <div class="service-card orange">
+                    <div class="service-icon">📅</div>
+                    <h3>Calendario de Vacunas</h3>
+                    <div class="desc">Control y recordatorios de vacunacion</div>
+                    <ul>
+                        <li>Recordatorios</li>
+                        <li>Historial de vacunación</li>
+                        <li>Plan personalizado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section bg-muted">
+    <div class="container">
+        <div class="section-header">
+            <h2>¿porque elegir Petlovers?</h2>
+            <p>Queremos ser la mejor opción para cuidar a tus mascotas</p>
+        </div>
+        <div class="grid-4">
+            <div class="why-card">
+                <div class="why-number">01</div>
+                <h3>Facil de usar</h3>
+                <p>Interfaz intuitiva diseñada para todos."</p>
+            </div>
+            <div class="why-card">
+                <div class="why-number">02</div>
+                <h3>Organizado</h3>
+                <p>"Tus datos estan mejor organizados y accesibles en todo momento."</p>
+            </div>
+            <div class="why-card">
+                <div class="why-number">03</div>
+                <h3>Confiable</h3>
+                <p>"Servicio de calidad y soporte al cliente excepcional."</p>
+            </div>
+            <div class="why-card">
+                <div class="why-number">04</div>
+                <h3>Asequible</h3>
+                <p>"Precios competitivos sin comprometer la calidad del servicio."</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}  
