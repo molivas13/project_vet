@@ -1,42 +1,62 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block content %}
-<div class="container-xl py-4">
-    <div class="col-12 mb-4">
-        <div class="card card-hero-welcome p-4 p-md-5">
-            <div class="row align-items-center">
-
-                <!-- Texto de Bienvenida -->
-                <div class="col-lg-7 col-12">
-                    <span class="badge bg-teal-light text-teal fw-bold px-3 py-2 rounded-pill mb-3">Panel de control</span>
-                    <h2 class="fw-bold text-dark display-6 mb-2">¡Hola, {{ user.username|default:"Amigo" }}!</h2>
-                    <p class="text-muted mb-4 fs-6">
-                        Bienvenido al portal de tu veterinaria. Aquí puedes programar turnos, consultar tus informes clínicos y gestionar toda la información de tus mascotas.
-                    </p>
-
-                    <div class="d-flex flex-wrap gap-3">
-                        <a href="#" class="btn btn-hero-action btn-hero-teal">
-                            <i class="fa-solid fa-calendar-plus me-2"></i> Registrar Cita
-                        </a>
-
-                        <a href="#" class="btn btn-hero-action btn-hero-outline">
-                            <i class="fa-solid fa-syringe me-2"></i> Calendario de vacunas
-                        </a>
-
-                        <a href="#" class="btn btn-hero-action btn-hero-outline">
-                            <i class="fa-solid fa-paw me-2"></i> Registrar Mascota
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Imagen / Ilustración a la derecha -->
-                <div class="col-lg-5 d-none d-lg-block text-center">
-                    <div class="fs-1 py-4">🐶🐱🦜</div>
-                </div>
-
+<div class="page-header">
+    <div class="container">
+        <h1>Hola, {{ user.username }}</h1>
+            <p>Este es el resumen de tu cuenta en PetLovers<p/>
             </div>
         </div>
-    </div>
-</div>
+
+        <section class= "section">
+            <div class="container">
+                <div class="grid-3" style"margin-bottom:48px;">
+                    <div class= "card">
+                        <div class="service-icon">🐾</div>
+                        <h3>Mascotas</h3>
+                        <p style="font-size:2rem; font-weight:700; color:var(--teal-600); margin:6px 0;">{{ total_mascotas }}<p/>
+                        <a href="{% url 'core:mascotas' %}" style="color:var(--teal-600); font-weight:600;">Ver mis mascotas</a>
+                        </div>
+                        <div class="card">
+                            <div class="service-icon"></div>
+                            <h3>Vacunas registradas</h3>
+                            <p Style= "font-size:2rem; font-weight:700; color:var(--teal-600); margin:6px 0;">{{ total_vacunas }}</p>
+                            <a href="{%url 'core:vacunas' %}" style="color:var(--teal-600); font-weight:600;">Ver vacunas</a>
+                        </div>
+                        <div class="card">
+                            <div class="service-icon"></div>
+                            <h3>Proximas citas</h3>
+                            <p style="font-size:2rem; font-weight:700; color:var(--teal-600); margin:6px 0; ">{{ proximas_citas|length}}</p>
+                            <a href="{%url 'core:citas' %}" style="color:var(--teal-600);font-weight:600;">Ver citas </a>
+                        </div>
+                    </div>
+
+                    <h2 style="margin-bottom:20px;">Tus proximas citas</h2>
+                    {% if proximas_citas%}
+                    <div class="card" style="padding:0;">
+                        <table class="table">
+                            <thread>
+                                <tr><th>Mascota</th><th>Motivo</th><th>Fecha</th><th>Estado</th><tr>
+                                </thread>
+                                    <tbody>
+
+                                        {%for cita in proximas_citas%}
+                                        <tr>
+                                            <td>{{ cita.mascota.nombre }}</td>    
+                                            <td>{{ cita.motivo }}</td>
+                                            <td>{{ cita.fecha }}</td>
+                                            <td><span class= "badge badge-{{ cita.estado }}">{{ cita.get_estado_display }}</span></td>
+                                        </tr>
+                                        {%endfor%}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% else %}
+                            <div class="empty-state card">No tienes citas proximas. <a href="{% url 'core:cita_crear' %}" style="color:var(--teal-600); font-weight:600;">Agenda una ahora</a>.</div>
+                            {%endif%}
+                        </div>
+                    </section>
+
+       
 
 {% endblock %}

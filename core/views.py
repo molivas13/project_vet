@@ -30,3 +30,6 @@ def logout_view(request):
 
 def registro(request):
     return render(request,'core/registro.html')
+
+def cita_crear(request):
+    return render(request,'core/cita_crear.html')
