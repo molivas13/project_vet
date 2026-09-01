@@ -1,3 +1,29 @@
 {% extends "core/base.html" %}
 {%block title%}Petlovers - Tienda{%endblock%}
-{% block content %} 
+
+{% block content %}
+
+<div class="page-header">
+    <div class="container">
+        <h1>Tienda</h1>
+        <p>Productos premium para el bienestar de tus mascota</p>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        <div class="grid-3">
+        {% for producto in productos %}
+        <div class="card">
+            <div class="service-icon">🛒</div>
+            <h3>{{ producto.nombre }}</h3>
+            <p style="color:var(--muted); font-size:0.85rem; margin:4px 0 12px;"> {{ producto.categoria }}</p>
+            <button class="btn btn-primary" style="width:100%; border:none; margin-top:10px;"> Añadir al carrito</button>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</section>
+
+{% endblock %}
+

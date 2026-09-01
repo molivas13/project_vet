@@ -1,5 +1,9 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib.auth import login
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+
+
 
 def home(request):
     return render(request,'core/home.html')
@@ -33,3 +37,5 @@ def registro(request):
 
 def cita_crear(request):
     return render(request,'core/cita_crear.html')
+
+

@@ -1,124 +1,141 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}PetLovers - Cuidado de mascotas{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-
-<header class="navbar">
-    <div class="navbar-inner" id="navbarInner">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% block title %}PetLovers - Cuidado de mascotas{% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="navbar-inner" id="navbarInner">
         <a href="{% url 'core:home' %}" class="brand">
-            <div class="brand-logo">🐾</div>
-            <div class="brand-text">
-                <div class="brand-title">PetLovers</div>
-                <div class="brand-subtitle">Cuidado de mascotas</div>
-            </div>
+          <div class="brand-logo">🐾</div>
+          <div class="brand-text">
+            <div class="brand-title">PetLovers</div>
+            <div class="brand-subtitle">Cuidado de mascotas</div>
+          </div>
         </a>
 
         <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">☰</button>
 
         <nav class="nav-links">
-            <a href="{% url 'core:home' %}">🏠 Inicio</a>
-            <a href="{% url 'core:tienda' %}">🛍️ Tienda</a>
-            <a href="{% url 'core:contacto' %}">💬 Contacto</a>
-            {% if user.is_authenticated %}
-                <a href="{% url 'core:panel' %}">📋 Panel</a>
-                <a href="{% url 'core:mascotas' %}">🐕 Mis mascotas</a>
-                <a href="{% url 'core:vacunas' %}">💉 Vacunas</a>
-                <a href="{% url 'core:citas' %}">📅 Mis citas</a>
-            {% endif %}
+          <a href="{% url 'core:home' %}">🏠 Inicio</a>
+          <a href="{% url 'core:tienda' %}">🛍️ Tienda</a>
+          <a href="{% url 'core:contacto' %}">💬 Contacto</a>
+          {% if user.is_authenticated %}
+          <a href="{% url 'core:panel' %}">📋 Panel</a>
+          <a href="{% url 'core:mascotas' %}">🐕 Mis mascotas</a>
+          <a href="{% url 'core:vacunas' %}">💉 Vacunas</a>
+          <a href="{% url 'core:citas' %}">📅 Mis citas</a>
+          {% endif %}
         </nav>
 
         <div class="nav-right">
-            {% if user.is_authenticated %}
-                <span>{{ user.username }}</span>
-                <a href="{% url 'core:panel' %}" class="icon-btn" title="Mi panel">👤</a>
-                <form action="{% url 'core:logout' %}" method="post" style="margin:0;">
-                    {% csrf_token %}
-                    <button type="submit" class="icon-btn" title="Cerrar sesión">↩</button>
-                </form>
-            {% else %}
-                <span>Invitado</span>
-                <a href="{% url 'core:login' %}" class="icon-btn" title="Iniciar sesión">👤</a>
-                <a href="{% url 'core:registro' %}" class="icon-btn" title="Crear cuenta">↪</a>
-            {% endif %}
+          {% if user.is_authenticated %}
+          <span>{{ user.username }}</span>
+          <a href="{% url 'core:panel' %}" class="icon-btn" title="Mi panel"
+            >👤</a
+          >
+          <form
+            action="{% url 'core:logout' %}"
+            method="post"
+            style="margin: 0"
+          >
+            {% csrf_token %}
+            <button type="submit" class="icon-btn" title="Cerrar sesión">
+              ↩
+            </button>
+          </form>
+          {% else %}
+          <span>Invitado</span>
+          <a
+            href="{% url 'core:login' %}"
+            class="icon-btn"
+            title="Iniciar sesión"
+            >👤</a
+          >
+          <a
+            href="{% url 'core:registro' %}"
+            class="icon-btn"
+            title="Crear cuenta"
+            >↪</a
+          >
+          {% endif %}
         </div>
+      </div>
+    </header>
+
+    {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+      {% endfor %}
     </div>
-</header>
+    {% endif %}
 
-{% if messages %}
-<div class="messages">
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-    {% endfor %}
-</div>
-{% endif %}
+    <main>{% block content %}{% endblock %}</main>
 
-<main>
-    {% block content %}{% endblock %}
-</main>
-
-<footer class="footer">
-    <div class="container">
+    <footer class="footer">
+      <div class="container">
         <div class="footer-grid">
-            <div>
-                <div class="footer-brand">🐾 PetLovers</div>
-                <p>Cuidando mascotas con pasión y profesionalismo desde 2020.</p>
-                <div class="social-icons">
-                    <a href="#">f</a>
-                    <a href="#">t</a>
-                    <a href="#">ig</a>
-                    <a href="#">in</a>
-                </div>
+          <div>
+            <div class="footer-brand">🐾 PetLovers</div>
+            <p>Cuidando mascotas con pasión y profesionalismo desde 2020.</p>
+            <div class="social-icons">
+              <a href="#">f</a>
+              <a href="#">t</a>
+              <a href="#">ig</a>
+              <a href="#">in</a>
             </div>
-            <div>
-                <h4>Servicios</h4>
-                <ul>
-                    <li><a href="{% url 'core:tienda' %}">Tienda</a></li>
-                    <li>Consultas</li>
-                    <li><a href="{% url 'core:vacunas' %}">Vacunas</a></li>
-                    <li><a href="{% url 'core:citas' %}">Citas</a></li>
-                    <li>Comunidad</li>
-                </ul>
-            </div>
-            <div>
-                <h4>Empresa</h4>
-                <ul>
-                    <li>Sobre nosotros</li>
-                    <li>Blog</li>
-                    <li><a href="{% url 'core:contacto' %}">Contacto</a></li>
-                    <li>Carreras</li>
-                    <li>Prensa</li>
-                </ul>
-            </div>
-            <div>
-                <h4>Legal</h4>
-                <ul>
-                    <li>Privacidad</li>
-                    <li>Términos</li>
-                    <li>Cookies</li>
-                    <li>Accesibilidad</li>
-                </ul>
-            </div>
+          </div>
+          <div>
+            <h4>Servicios</h4>
+            <ul>
+              <li><a href="{% url 'core:tienda' %}">Tienda</a></li>
+              <li>Consultas</li>
+              <li><a href="{% url 'core:vacunas' %}">Vacunas</a></li>
+              <li><a href="{% url 'core:citas' %}">Citas</a></li>
+              <li>Comunidad</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Empresa</h4>
+            <ul>
+              <li>Sobre nosotros</li>
+              <li>Blog</li>
+              <li><a href="{% url 'core:contacto' %}">Contacto</a></li>
+              <li>Carreras</li>
+              <li>Prensa</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Legal</h4>
+            <ul>
+              <li>Privacidad</li>
+              <li>Términos</li>
+              <li>Cookies</li>
+              <li>Accesibilidad</li>
+            </ul>
+          </div>
         </div>
         <div class="footer-bottom">
-            <span>© {% now "Y" %} PetLovers. Todos los derechos reservados.</span>
-            <span>Hecho con ❤️ para tus mascotas</span>
+          <span>© {% now "Y" %} PetLovers. Todos los derechos reservados.</span>
+          <span>Hecho con ❤️ para tus mascotas</span>
         </div>
-    </div>
-</footer>
+      </div>
+    </footer>
 
-<script>
-    const toggle = document.getElementById('navToggle');
-    const inner = document.getElementById('navbarInner');
-    if (toggle) {
-        toggle.addEventListener('click', () => inner.classList.toggle('open'));
-    }
-</script>
-{% block extra_js %}{% endblock %}
-</body>
+    <script>
+      const toggle = document.getElementById("navToggle");
+      const inner = document.getElementById("navbarInner");
+      if (toggle) {
+        toggle.addEventListener("click", () => inner.classList.toggle("open"));
+      }
+    </script>
+    {% block extra_js %}{% endblock %}
+  </body>
 </html>
