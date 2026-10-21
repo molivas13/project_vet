@@ -1,0 +1,49 @@
+{% extends "core/base.html" %}
+{% block title %}PetLovers - Mis mascotas{% endblock %}
+{% block content %}
+
+<div class="page-header">
+    <div class="container">
+        <h1>Mis mascotas</h1>
+        <p>Registro de tus mascotas en PetLovers</p>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        {% if mascotas %}
+        <div class="card" style="border-radius: 16px; overflow: hidden;">
+            <table class="table align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Especie</th>
+                        <th>Raza</th>
+                        <th>Sexo</th>
+                        <th>Propietario</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for mascota in mascotas %}
+                    <tr>
+                        <td class="fw-semibold">{{ mascota.nombre }}</td>
+                        <td>{{ mascota.get_especie_display }}</td>
+                        <td>{{ mascota.raza|default:"-" }}</td>
+                        <td>{{ mascota.get_sexo_display }}</td>
+                        <td>{{ mascota.propietario }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="card text-center py-5" style="border-radius: 16px;">
+            <h5 class="fw-bold">Aun no tienes mascotas registradas</h5>
+            <p class="text-muted">Contactanos para registrar a tu mascota.</p>
+            <a href="{% url 'core:contacto' %}" class="btn btn-primary rounded-pill px-4 py-2 fw-semibold">Contacto</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "core/base.html" %}
+{% block title %}PetLovers - Vacunas{% endblock %}
+{% block content %}
+
+<div class="page-header">
+    <div class="container">
+        <h1>Vacunas registradas</h1>
+        <p>Historial de vacunacion de tus mascotas</p>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        {% if vacunas %}
+        <div class="card" style="border-radius: 16px; overflow: hidden;">
+            <table class="table align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Mascota</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Notas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for vacuna in vacunas %}
+                    <tr>
+                        <td class="fw-semibold">{{ vacuna.paciente.nombre }}</td>
+                        <td>
+                            {% if vacuna.fecha_hora %}{{ vacuna.fecha_hora|date:"d M Y" }}{% else %}{{ vacuna.fecha_solicitada|date:"d M Y" }}{% endif %}
+                        </td>
+                        <td>{{ vacuna.get_estado_display }}</td>
+                        <td>{{ vacuna.notas|default:"-" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="card text-center py-5" style="border-radius: 16px;">
+            <h5 class="fw-bold">No hay vacunas registradas</h5>
+            <p class="text-muted">Consulta nuestras opciones de vacunacion.</p>
+            <a href="{% url 'core:contacto' %}" class="btn btn-primary rounded-pill px-4 py-2 fw-semibold">Contacto</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

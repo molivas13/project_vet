@@ -1,0 +1,54 @@
+{% extends "core/base.html" %}
+{% block title %}PetLovers - Mis citas{% endblock %}
+{% block content %}
+
+<div class="page-header">
+    <div class="container">
+        <h1>Mis citas</h1>
+        <p>Citas programadas y atendidas de tus mascotas</p>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        <p><a href="{% url 'core:cita_crear' %}" class="btn btn-primary rounded-pill px-4 py-2 fw-semibold">+ Nueva cita</a></p>
+        {% if citas %}
+        <div class="card" style="border-radius: 16px; overflow: hidden;">
+            <table class="table align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Mascota</th>
+                        <th>Tipo</th>
+                        <th>Fecha</th>
+                        <th>Sucursal</th>
+                        <th>Veterinario</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cita in citas %}
+                    <tr>
+                        <td class="fw-semibold">{{ cita.paciente.nombre }}</td>
+                        <td>{{ cita.get_tipo_display }}</td>
+                        <td>
+                            {% if cita.fecha_hora %}{{ cita.fecha_hora|date:"d M Y, h:i a" }}{% else %}{{ cita.fecha_solicitada|date:"d M Y" }}{% endif %}
+                        </td>
+                        <td>{{ cita.sucursal.nombre }}</td>
+                        <td>{{ cita.veterinario.username }}</td>
+                        <td><span class="badge rounded-pill px-3 py-2">{{ cita.get_estado_display }}</span></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="card text-center py-5" style="border-radius: 16px;">
+            <h5 class="fw-bold">No tienes citas registradas</h5>
+            <p class="text-muted">Agenda una cita para cuidar la salud de tus mascotas.</p>
+            <a href="{% url 'core:cita_crear' %}" class="btn btn-primary rounded-pill px-4 py-2 fw-semibold">Agenda una cita</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

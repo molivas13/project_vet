@@ -9,7 +9,7 @@ from .models import User, Sucursal, Servicio, Propietario, Mascota, Farmaco, Cit
 @admin.register(User)
 class CustomUserAdmin(UserAdmin): 
     fieldsets = UserAdmin.fieldsets +(
-        ('Informacion Adicional', {'fields' : ('rol', 'telefono')}),
+        ('Informacion Adicional', {'fields' : ('rol',)}),
     )
     list_display = ('username', 'email', 'first_name', 'last_name', )
     list_filter = ('rol', 'is_staff', 'is_active')

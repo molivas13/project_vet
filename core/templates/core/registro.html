@@ -1,0 +1,32 @@
+{% extends "core/base.html" %}
+{% block title %}PetLovers - Crear Cuenta{% endblock %}
+{% block content %}
+
+<div class="page-header">
+    <div class="container">
+        <h1>Crear Cuenta</h1>
+        <p>Unete a PetLovers</p>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container" style="max-width: 480px;">
+        <form method="post" class="card">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form-field">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% for error in field.errors %}<div class="form-errors">{{ error }}</div>{% endfor %}
+                {% if field.help_text %}<div class="form-hint">{{ field.help_text }}</div>{% endif %}
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Crear Cuenta</button>
+        </form>
+        <p style="text-align:center; margin-top: 16px; color:var(--muted);">
+            ¿Ya tienes cuenta? <a href="{% url 'core:login' %}" style="color:var(--teal-600); font-weight: 600;">Iniciar Sesión</a>
+        </p>
+    </div>
+</section>
+
+{% endblock %}

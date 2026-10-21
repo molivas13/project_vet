@@ -11,13 +11,14 @@ urlpatterns = [
     path('panel/', views.panel, name='panel'),
     path('tienda/', views.tienda, name='tienda'),
     path('contacto/', views.contacto, name='contacto'),
+
+    path('registro/', views.registro, name='registro'),
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
     
     path('mascotas/', views.mascotas, name='mascotas'),
     path('vacunas/', views.vacunas, name='vacunas'),
     path('citas/', views.citas, name='citas'),
-    path('login/', views.login_view, name='login'),
-    path('logout/', views.logout_view, name='logout'),
-    path('registro/', views.registro, name='registro'),
     path('citas/nueva/', views.cita_crear,name='cita_crear'),
     
 ]

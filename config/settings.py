@@ -120,3 +120,5 @@ STATIC_URL = 'static/'
 import os 
 STATICFILES_DIRS = [BASE_DIR / "static",]
 AUTH_USER_MODEL = 'core.User'
+LOGIN_URL = 'core:login'
+LOGIN_REDIRECT_URL = 'core:panel'
