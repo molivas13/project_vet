@@ -1,160 +1,207 @@
 /*Linea superior navbar*/
 /* contenedor superior */
 
+:root{
+  --teal-900: #0f3d3a;
+  --teal-700: #0e6b60;
+  --teal-600: #0f8c7d;
+  --teal-400: #2ec4ae;
+  --orange-500: #f5a524;
+  --orange-600: #e8940f;
+  --ink: #1f2937;
+  --muted: #6b7280;
+  --bg-light:#f7fafa;
+  --card-border: #e5e9e8;
+
+}
+
+*{
+  box-sizing: border-box;
+}
+
+body{
+  margin:0;
+  font-family: "segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background: #ffffff;
+
+
+a{
+    text-decoration: none;
+    color: inhiret;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+}
 /* Navbar style */
-.navbar-glass-wrapper {
-  background-color: rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  border-radius: 50px !important;
-  width: 100%;
-}
-/* subtexto debajo del logo */
-.decoration-subtext {
-  font-size: 0.7rem !important;
+.navbar{
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.brand-icon-bg {
-  font-size: 1.4rem;
-  background-color: rgba(255, 255, 255, 0.2) !important;
-  padding: 6px;
-  border-radius: 12%;
+.navbar-brand{
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
-/*enlaces del menu horizontales*/
-.custom-pill-link {
-  color: rgba(255, 255, 255, 0.85) !important;
-  font-size: 0.9rem !important;
-  font-weight: 500 !important;
-  padding: 0.5rem 1rem !important;
-  border-radius: 50px !important;
-  transition: all 0.2s ease-in-out !important;
+.nav-link{
+  font-weight: 500;
+  text-transform:uppercase;
+  margin-right: 1rem;
+  transition: color 0.3s;;
 }
 
-/* bton estados activo y hover */
-
-.custom-pill-link:hover,
-.custom-pill-link.active {
-  background-color: rgba(255, 255, 255, 0.15) !important;
-  color: #ffffff !important;
-  transform: translateY(-2px);
+.nav-link:hover{
+  color:#ccc !important;
 }
 
-/*boton de salir*/
-.btn-nav-exit {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  color: #ffffff !important;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 50px;
-  transition: all 0.2s ease;
-  text-decoration: none;
+.nav-link.active{
+  color: #fff !important;
 }
 
-.btn-nav-exit:hover {
-  background-color: rgba(244, 63, 94, 0.2);
-  color: #fda4af;
+.form-control {
+  border-radius: 20px 0 0 20px;
 }
 
-/*ajuste responsive para mobile*/
-@media (max-width: 1199.98px) {
-  .navbar-glass-wrapper {
-    border-radius: 20px !important;
+.btn-outline:light {
+  border-radius: 0 20px 20px 0;
+
+}
+  .icon-btn {
+    width: 34px;
+    height:34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border:none;
+    color: #fff;
   }
 
-  .navbar-collapse {
-    margin-top: 15px;
+  .nav-togle {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
   }
 
-  .custom-pill-link {
-    width: 100%;
-    display: block;
-    padding: 0.6rem 1.2rem !important;
-  }
+/* ---------------- Hero -----------*/
 
-  .border-top-mobile {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    flex-direction: column;
-    align-items: flex-start !important;
-    width: 100%;
-  }
-
-  .w-100-mobile {
-    width: 100% !important;
-    display: block;
-  }
+.hero{
+  background: linear-gradient(135deg, var(--teal-500),var(--teal-500));
+  color: #fff;
+  padding: 72px 0;
 }
 
-.card-hero-welcome {
-  background-color: #ffffff !important;
-  border: none !important;
-  border-radius: 28px !important;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5) !important;
-  position: relative;
-  overflow: hidden;
-}
-
-.card-hero-welcome::before {
-  content: "";
-  position: absolute;
-  top: -50px;
-  right: -50px;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(
-    circle,
-    rgba(0, 128, 128, 0.03) 0%,
-    transparent 70%
-  );
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.img-hero-vector {
-  max-height: 220px;
-  transition: transform 0.3s ease;
-}
-
-.card-hero-welcome:hover .img-hero-vector {
-  transform: scale(1.04) rotate(1deg);
-}
-
-.btn-hero-action {
-  padding: 0.7rem 1.4rem !important;
-  font-size: 0.9rem !important;
-  font-weight: 600 !important;
-  border-radius: 50px !important;
-  transition: all 0.25s ease !important;
-  display: inline-flex;
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 48px;
   align-items: center;
 }
-/*boton de registrar cita*/
-.btn-hero-teal {
-  background-color: #008080 !important;
-  color: #ffffff !important;
-  border: 1px solid #008080 !important;
-  box-shadow: 0 4px 12px rgba(0, 128, 128, 0.2) !important;
+
+.hero h1{
+  font-size: 2.6rem;
+  margin: 0 0 20px;
+  line-height: 1.15px;
 }
 
-.btn-hero-teal:hover {
-  background-color: #005a5a !important;
-  border-color: #005a5a !important;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0, 128, 128, 0.3) !important;
+.hero h1 span{
+  color: var(--orange-500)
 }
 
-/* boton para vacunas y mascotas*/
-
-.btn-hero-outline {
-  background-color: transparent !important;
-  color: #4b5563 !important;
-  border: 1px solid #e5e7eb !important;
+.hero p{
+  font-size:1.05rem;
+  line-height: 1.6rem;
+  opacity:0.95;
+  margin-bottom:28px;
+  max-width: 520px;
 }
 
-.btn-hero-outline:hover {
-  background-color: #f9fafb !important;
-  border-color: #008080 !important;
-  color: #008080 !important;
-  transform: translateY(-2px);
+.hero-actions {
+  display: flex;
+  gap:16px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
 }
+
+.btn {
+  padding: 13px 26px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid transparent;
+  font-size: 0.95rem;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: var(--orange-500);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--orange-600);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.hero-stats {
+  display: flex;
+  gap: 40px;
+}
+
+.hero-stats{
+  display:flex;
+  gap: 40px;
+}
+
+.hero-stats div strong {
+  display:block;
+  font-size:1.6rem;
+}
+
+.hero-stats div span{
+  font-size: 0.82rem;
+  opacity:0.85;
+}
+
+.hero-card {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius:20px;
+  padding: 32px ;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.hero-card .emoji{
+  font-size: 2.6rem;
+}
+
+.hero-card p{
+  margin-top: 12px;
+  font-weight: 600;
+  opacity: 1;
+}
+
+/*---------------- Section----------*/
+
+
