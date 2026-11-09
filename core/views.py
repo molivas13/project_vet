@@ -30,6 +30,9 @@ def contacto(request):
         return redirect("core:contacto")
     return render(request, "core/contacto.html")
 
+def servicios(request):
+    return render(request, "core/base.html")
+
 
 def registro(request):
     if request.method == "POST":

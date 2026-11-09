@@ -1,0 +1,14 @@
+:root {
+    --bs-body-bg: oklch(0.35 0.06 232.16);
+    --bs-body-color: #f0f2f5;
+    --bs-emphasis-color: #ffffff;
+    --bs-secondary-color: rgba(240, 242, 245, 0.65);
+    --bs-border-color: rgba(255, 255, 255, 0.12);
+}
+
+body {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
